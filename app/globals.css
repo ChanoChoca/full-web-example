@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@keyframes slide {
+  0% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+/* OTRA */
+.animate-slide {
+  animation: slide 2s linear infinite;
+}
+
+.animate-text,
+.animate-text-2 {
+  --clip-value: 100%;
+}
+
+.animate-text::before,
+.animate-text-2::before {
+  content: attr(data-text);
+  clip-path: inset(0 0 var(--clip-value) 0);
+  will-change: clip-path;
+}
+
+/* OTRA */
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.animate-slide-right {
+  animation: slide-right 1.2s cubic-bezier(0.6, 0, 0.4, 1) forwards;
+}
+
+.text-stroke {
+  color: transparent !important;
+  -webkit-text-stroke: 2px white;
+  -moz-text-stroke: 2px white;
+}
+
+/* OTRA */
+.nav-item {
+  position: relative;
+  border-bottom: 1px solid #eadbc833;
+  transition: height 0.35s ease;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  height: 100%;
+  background: #ef5143;
+
+  transform-origin: top;
+  transform: scaleY(var(--progress, 0));
+
+  transition: transform 0.3s linear;
+}
+
+.nav-item p:nth-child(2) {
+  transition: width 0.35s ease, height 0.35s ease, padding 0.35s ease,
+    opacity 0.35s ease;
+  will-change: width, height, padding, opacity;
+}
